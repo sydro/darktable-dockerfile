@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV version $CACHE_TAG
+ENV version 2.4.4
 
 RUN apt-get update && \
     apt-get -y install debhelper dpkg-dev fakeroot wget && \
