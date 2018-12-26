@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV version 2.4.4
+ENV version 2.6.0
 
 RUN apt-get update && \
     apt-get -y install debhelper dpkg-dev fakeroot wget libgphoto2-6 && \
