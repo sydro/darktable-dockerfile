@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV version 2.6.1
+ENV version 2.6.2
 
 RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && apt-get update && \
     apt-get -y install debhelper dpkg-dev fakeroot wget libgphoto2-6 && \
