@@ -1,16 +1,15 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
-ENV version 2.6.2
+ENV version 3.1.0
 
 RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && apt-get update && \
-    apt-get -y install debhelper dpkg-dev fakeroot wget libgphoto2-6 && \
+    apt-get -y install debhelper dpkg-dev fakeroot wget libgphoto2-6 git && \
     apt-get -y build-dep darktable && \
-    cd /root && wget https://github.com/darktable-org/darktable/releases/download/release-${version}/darktable-${version}.tar.xz && \
-    tar -xvf darktable-${version}.tar.xz && \
-    cd darktable-${version} && \
-    ./build.sh --prefix /opt/darktable --build-type Release && \
-    cmake --build "/root/darktable-${version}/build" --target install -- -j4 && \
-    apt-get -y remove debhelper dpkg-dev fakeroot && apt-get clean && rm -r /root/darktable-${version}*
+    cd root && git clone https://github.com/darktable-org/darktable.git && cd darktable && \
+    git checkout release-${version} && git submodule init && git submodule update && \
+    ./build.sh --prefix /opt/darktable --build-type Release && \                                                                                
+    cmake --build "/root/darktable/build" --target install -- -j4 && \
+    apt-get -y remove debhelper dpkg-dev fakeroot git && apt-get clean && rm -rf /root/darktable*
 
 RUN useradd -ms /bin/bash darktable
 
