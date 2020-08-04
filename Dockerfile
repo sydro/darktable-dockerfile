@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-ENV version 3.0.2
+ENV version 3.2.1
 
 RUN sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list && apt-get update && \
     apt-get -y install debhelper dpkg-dev fakeroot wget libgphoto2-6 git && \
